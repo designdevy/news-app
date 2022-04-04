@@ -1,7 +1,7 @@
 <template>
   <v-row class="pa-0">
     <v-col cols="3" v-for="(article, index) in articles" :key="index" class="d-flex align-stretch">
-      <news-card>
+      <news-card :id="index + 1">
         <v-card-title slot="title" class="text-subtitle-1 normal">
           {{ article.title.substr(0, article.title.indexOf('-')) }}
         </v-card-title>

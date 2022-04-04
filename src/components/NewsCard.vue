@@ -9,7 +9,14 @@
           <slot name="sub-title"></slot>
           <div>
             <v-btn color="pink lighten-2" outlined> Edit </v-btn>
-            <v-btn class="ms-2" color="orange lighten-2" outlined> Read </v-btn>
+            <v-btn
+              class="ms-2"
+              color="orange lighten-2"
+              outlined
+              :to="{ name: 'article', params: { articleId: id } }"
+            >
+              Read
+            </v-btn>
           </div>
         </v-card-subtitle>
       </div>
@@ -24,5 +31,6 @@ export default {
       show: false,
     };
   },
+  props: ['id'],
 };
 </script>

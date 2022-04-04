@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Headlines from '../views/Headlines.vue';
+import NewsHeadlines from '../views/NewsHeadlines.vue';
 
 Vue.use(VueRouter);
 
@@ -8,16 +8,14 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Headlines,
+    component: NewsHeadlines,
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
-  // },
+  {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => import('../views/NewsArticle.vue'),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

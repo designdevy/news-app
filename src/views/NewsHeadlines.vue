@@ -13,7 +13,7 @@ import NewsContent from '../components/NewsContent.vue';
 import data from '../assets/data.json';
 
 export default {
-  name: 'HeadLines',
+  name: 'NewsHeadlines',
   data() {
     return {
       articles: data.articles,
