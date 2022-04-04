@@ -68,7 +68,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'NewsContent',
 
   data: () => ({
     test: 'test',
