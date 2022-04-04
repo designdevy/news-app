@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="deep-purple accent-4" dark>
+    <v-app-bar app color="deep-purple accent-4" dark dense>
       <!-- Add News App Title -->
       <div>ThisWeek</div>
       <!-- <div class="d-flex align-center">
@@ -39,3 +39,7 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+/* Add Global Styles for Fonts here */
+</style>
