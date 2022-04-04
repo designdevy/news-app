@@ -1,6 +1,8 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
+      <!-- Add News App Title -->
+      <div>ThisWeek</div>
       <!-- <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
