@@ -1,22 +1,32 @@
 <template>
-  <v-row class="text-center">
-    <v-card class="news-card" elevation="2"> Test Card </v-card>
+  <v-row class="pa-0">
+    <v-col cols="3" v-for="(article, index) in articles" :key="index" class="d-flex align-stretch">
+      <news-card>
+        <v-card-title slot="title" class="text-subtitle-1 normal">
+          {{ article.title.substr(0, article.title.indexOf('-')) }}
+        </v-card-title>
+        <v-chip slot="sub-title">
+          {{ article.source.name }}
+        </v-chip>
+      </news-card>
+    </v-col>
   </v-row>
 </template>
 
 <script>
+import NewsCard from './NewsCard.vue';
+
 export default {
   name: 'NewsContent',
-
-  data: () => ({
-    test: 'test',
-  }),
+  props: ['articles'],
+  components: {
+    NewsCard,
+  },
 };
 </script>
 
-<style scoped>
-.news-card {
-  width: 200px;
-  height: 200px;
+<style>
+.normal {
+  word-break: normal;
 }
 </style>
