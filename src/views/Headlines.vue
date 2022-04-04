@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import NewsContent from '../components/NewsContent.vue';
 
 export default {
@@ -17,6 +18,19 @@ export default {
 
   components: {
     NewsContent,
+  },
+
+  created() {
+    axios
+      .get(
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=841d612e1f4c415780982ddf90eecdfc',
+      )
+      .then((respponse) => {
+        console.log(respponse.data);
+      })
+      .catch((error) => {
+        console.log('Error: ', error);
+      });
   },
 };
 </script>
