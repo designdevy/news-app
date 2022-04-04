@@ -1,6 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="app-container" fluid>
     <v-row class="text-center">
+      <v-card class="news-card" elevation="2"> Test Card </v-card>
       <!-- <v-col cols="12">
         <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200" />
       </v-col>
@@ -75,3 +76,13 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+.app-container {
+  padding: 30px;
+}
+.news-card {
+  width: 200px;
+  height: 200px;
+}
+</style>
