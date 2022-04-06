@@ -2,7 +2,7 @@
   <v-container class="py-10">
     <v-row class="d-flex flex-column">
       <v-column class="mx-auto">
-        <v-img :src="this.articles[articleId - 1].urlToImage"></v-img>
+        <v-img max-width="1000px" :src="this.articles[articleId - 1].urlToImage"></v-img>
       </v-column>
       <v-column class="mx-auto mt-10">
         {{ this.articles[articleId - 1].description }}
