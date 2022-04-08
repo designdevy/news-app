@@ -29,6 +29,7 @@
                           :counter="max"
                           :rules="rules"
                           label="Headline*"
+                          :maxlength="max + 1"
                           required
                         ></v-text-field>
                       </v-col>
