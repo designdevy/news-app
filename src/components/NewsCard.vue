@@ -3,10 +3,14 @@
     <v-card elevation="2" class="rounded-lg fill-height">
       <div class="d-flex flex-column justify-space-between fill-height">
         <div>
-          <slot name="title"></slot>
+          <v-card-title class="text-subtitle-1 normal">
+            {{ title }}
+          </v-card-title>
         </div>
         <v-card-subtitle class="d-flex justify-space-between align-center">
-          <slot name="sub-title"></slot>
+          <v-chip>
+            {{ this.article.source.name }}
+          </v-chip>
           <div>
             <v-dialog v-model="dialog" width="500">
               <template v-slot:activator="{ on, attrs }">
@@ -54,11 +58,11 @@ export default {
   data() {
     return {
       dialog: false,
-      title: null,
+      title: this.article.title.substr(0, this.article.title.indexOf('-') - 1),
       max: 255,
     };
   },
-  props: ['id'],
+  props: ['id', 'article'],
   computed: {
     rules() {
       const rules = [];

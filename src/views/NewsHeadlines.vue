@@ -16,7 +16,7 @@ export default {
   name: 'NewsHeadlines',
   data() {
     return {
-      articles: data.articles,
+      articles: [],
     };
   },
 
@@ -24,19 +24,21 @@ export default {
     NewsContent,
   },
 
-  // created() {
-  //   axios
-  //     .get(
-  //       'https://newsapi.org/v2/top-headlines?country=us&apiKey=841d612e1f4c415780982ddf90eecdfc',
-  //     )
-  //     .then((respponse) => {
-  //       console.log(respponse.data.articles);
-  //       this.articles = respponse.data.articles;
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error: ', error);
-  //     });
-  // },
+  created() {
+    //   axios
+    //     .get(
+    //       'https://newsapi.org/v2/top-headlines?country=us&apiKey=841d612e1f4c415780982ddf90eecdfc',
+    //     )
+    //     .then((respponse) => {
+    //       console.log(respponse.data.articles);
+    //       this.articles = respponse.data.articles;
+    //     })
+    //     .catch((error) => {
+    //       console.log('Error: ', error);
+    //     });
+
+    this.articles = data.articles;
+  },
 };
 </script>
 
