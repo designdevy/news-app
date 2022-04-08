@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <v-container class="pa-5" fluid>
-      <h1 class="text-h4 mb-4">Headlines</h1>
-      <news-content :articles="articles" />
-    </v-container>
-  </div>
+  <v-container class="pa-5" fluid>
+    <h1 class="text-h4 mb-4">Headlines</h1>
+    <news-content :articles="articles" />
+  </v-container>
 </template>
 
 <script>
