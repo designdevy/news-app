@@ -13,8 +13,18 @@ const routes = [
   {
     path: '/article/:articleId',
     name: 'article',
-    component: () => import('../views/NewsArticle.vue'),
+    component: () => import(/* webpackChunkName: NewsArticle */
+      '../views/NewsArticle.vue'
+    ),
     props: true,
+  },
+  {
+    path: '/404',
+    name: 'notFound',
+    alias: '*',
+    component: () => import(/* webpackChunkName: NotFound */
+      '../views/NotFound.vue'
+    ),
   },
 ];
 
