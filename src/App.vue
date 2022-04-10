@@ -4,27 +4,15 @@
       <!-- Add News App Title -->
       <router-link class="text-decoration-none white--text" to="/">ThisWeekNews!</router-link>
       <v-spacer />
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = true" class="mx-1"></v-app-bar-nav-icon>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary right>
+    <v-navigation-drawer v-model="drawer" absolute temporary right :width="700">
       <v-list nav dense flat>
         <v-subheader class="text-h5 pa-0 black--text">History</v-subheader>
         <v-divider class="my-2"></v-divider>
         <v-list-item-group>
-          <v-list-item>
-            <v-list-item-title>Foo</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
+          <v-list-item v-for="item in getHistory" :key="item.id">
+            {{ item.title }}
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -38,12 +26,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'App',
-
-  data: () => ({
-    drawer: false,
-  }),
+  data() {
+    return {
+      drawer: false,
+    };
+  },
+  computed: mapGetters(['getHistory']),
 };
 </script>
 

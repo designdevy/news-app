@@ -39,12 +39,7 @@
                 </v-card-text>
               </v-card>
             </v-dialog>
-            <v-btn
-              class="ms-2"
-              color="orange lighten-2"
-              outlined
-              :to="{ name: 'article', params: { articleId: id } }"
-            >
+            <v-btn class="ms-2" color="orange lighten-2" outlined @click.prevent="addToHistory">
               Read
             </v-btn>
           </div>
@@ -55,10 +50,13 @@
 </template>
 
 <script>
+import router from '../router/index';
+
 export default {
   data() {
     return {
       dialog: false,
+      articleId: this.id,
       title: this.article.title.substr(0, this.article.title.indexOf('-') - 1),
       max: 255,
     };
@@ -83,6 +81,13 @@ export default {
   methods: {
     validateField() {
       this.$refs.form.validate();
+    },
+    addToHistory() {
+      this.$store.commit('ADD_TO_HISTORY', {
+        id: this.articleId,
+        title: this.title,
+      });
+      router.push({ name: 'article', params: { articleId: this.articleId } });
     },
   },
 };

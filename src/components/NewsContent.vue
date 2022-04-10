@@ -1,6 +1,16 @@
 <template>
   <v-row class="pa-0">
-    <v-col cols="3" v-for="(article, index) in articles" :key="index" class="d-flex align-stretch">
+    <v-col
+      xl="3"
+      lg="4"
+      md="6"
+      sm="12"
+      xs="12"
+      v-for="(article, index) in articles"
+      :key="index + 1"
+      class="d-flex align-stretch"
+      cols="12"
+    >
       <news-card :article="article" :id="index + 1"></news-card>
     </v-col>
   </v-row>
