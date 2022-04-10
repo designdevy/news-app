@@ -1,29 +1,29 @@
 <template>
-  <v-container class="pa-5" fluid>
-    <h1 class="text-h4 mb-4">Headlines</h1>
+  <v-container class="pa-5 fill-height" fluid>
+    <v-row class="align-center" no-gutters style="height: 50px">
+      <h1 class="text-h4">Headlines</h1>
+      <v-spacer></v-spacer>
+      <news-filter />
+    </v-row>
     <skeleton-loader v-if="getLoadingStatus" />
     <news-content v-else :articles="getArticles" />
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import NewsContent from '../components/NewsContent.vue';
 import SkeletonLoader from '../components/SkeletonLoader.vue';
+import NewsFilter from '../components/NewsFilter.vue';
 
 export default {
   name: 'NewsHeadlines',
   components: {
     NewsContent,
     SkeletonLoader,
+    NewsFilter,
   },
-  computed: {
-    getArticles() {
-      return this.$store.getters.getArticles;
-    },
-    getLoadingStatus() {
-      return this.$store.getters.getLoadingStatus;
-    },
-  },
+  computed: mapGetters(['getArticles', 'getLoadingStatus']),
 };
 </script>
 

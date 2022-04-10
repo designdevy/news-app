@@ -42,6 +42,7 @@ export default {
   computed: mapGetters(['getHistory']),
   created() {
     this.$store.dispatch('fetchHeadlinesFromApi');
+    this.$store.dispatch('fetchSourcesFromApi');
   },
 };
 </script>
