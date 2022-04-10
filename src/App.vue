@@ -6,14 +6,18 @@
       <v-spacer />
       <v-app-bar-nav-icon @click="drawer = true" class="mx-1"></v-app-bar-nav-icon>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary right :width="700">
+    <v-navigation-drawer v-model="drawer" absolute temporary right :width="400">
       <v-list nav dense flat>
-        <v-subheader class="text-h5 pa-0 black--text">History</v-subheader>
+        <v-list-item
+          ><v-subheader class="text-h5 pa-0 black--text">History</v-subheader></v-list-item
+        >
         <v-divider class="my-2"></v-divider>
         <v-list-item-group>
-          <v-list-item v-for="item in getHistory" :key="item.id">
-            {{ item.title }}
-          </v-list-item>
+          <v-list-item-content v-for="item in getHistory" :key="item.id">
+            <v-list-item>
+              {{ item.title }}
+            </v-list-item>
+          </v-list-item-content>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
