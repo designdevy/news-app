@@ -22,6 +22,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-main>
+      <error-message />
       <transition name="animation" mode="out-in">
         <router-view />
       </transition>
@@ -31,9 +32,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ErrorMessage from './components/ErrorMessage.vue';
 
 export default {
   name: 'App',
+  components: {
+    ErrorMessage,
+  },
   data() {
     return {
       drawer: false,

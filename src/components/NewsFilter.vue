@@ -1,7 +1,8 @@
 <template>
   <v-dialog v-model="isFilterOpen" scrollable max-width="300px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="secondary" dark v-on="on" v-bind="attrs">Filter</v-btn>
+      <v-btn color="secondary" dark v-on="on" v-bind="attrs" class="mx-1">Filter</v-btn>
+      <v-btn color="error" dark class="mx-1" @click="sendWrongRequest">API Call Error</v-btn>
     </template>
     <v-card>
       <v-card-title>Select News Source</v-card-title>
@@ -43,9 +44,11 @@ export default {
       this.isFilterOpen = false;
     },
     applyFilter(source) {
-      console.log(source);
       this.$store.commit('APPLY_FILTER', source);
       this.isFilterOpen = false;
+    },
+    sendWrongRequest() {
+      this.$store.dispatch('fetchWithError');
     },
   },
   computed: mapGetters(['getSources']),

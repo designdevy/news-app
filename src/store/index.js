@@ -13,6 +13,8 @@ export default new Vuex.Store({
     loadingStatus: false,
     appliedFilter: '',
     isFilterApplied: false,
+    errorMessage: null,
+    errorExists: false,
   },
   getters: {
     getHistory(state) {
@@ -29,6 +31,12 @@ export default new Vuex.Store({
     },
     getLoadingStatus(state) {
       return state.loadingStatus;
+    },
+    getErrorMessage(state) {
+      return state.errorMessage;
+    },
+    getErrorExists(state) {
+      return state.errorExists;
     },
   },
   mutations: {
@@ -63,32 +71,52 @@ export default new Vuex.Store({
       state.isFilterApplied = true;
       state.appliedFilter = source;
     },
+    SET_ERROR_MESSAGE(state, errorMessage) {
+      if (errorMessage == null) {
+        state.errorExists = false;
+      } else {
+        state.errorExists = true;
+      }
+      state.errorMessage = errorMessage;
+    },
   },
   actions: {
     fetchHeadlinesFromApi(context) {
       context.commit('SET_LOADING_STATUS', true);
       axios
         .get(
-          'https://newsapi.org/v2/top-headlines?country=us&apiKey=841d612e1f4c415780982ddf90eecdfc',
+          'https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e',
         )
         .then((response) => {
           context.commit('SET_LOADING_STATUS', false);
           context.commit('SET_HEADLINES', response.data.articles);
         })
         .catch((error) => {
-          console.log('Error: ', error);
+          context.commit('SET_ERROR_MESSAGE', error.response.data.message || error.message);
         });
     },
     fetchSourcesFromApi(context) {
       axios
         .get(
-          'https://newsapi.org/v2/sources?apiKey=841d612e1f4c415780982ddf90eecdfc',
+          'https://newsapi.org/v2/sources?apiKey=099148be22804e849a0c6fe022b7cf5e',
         )
         .then((response) => {
           context.commit('SET_SOURCES', response.data.sources);
         })
         .catch((error) => {
-          console.log('Error: ', error);
+          context.commit('SET_ERROR_MESSAGE', error.response.data.message || error.message);
+        });
+    },
+    fetchWithError(context) {
+      axios
+        .get(
+          'https://newsapi.org/v2/sources?apiKey',
+        )
+        .then((response) => {
+          context.commit('SET_SOURCES', response.data.sources);
+        })
+        .catch((error) => {
+          context.commit('SET_ERROR_MESSAGE', error.response.data.message || error.message);
         });
     },
     fetchHeadlinesFromLocal(context) {
@@ -97,6 +125,27 @@ export default new Vuex.Store({
         context.commit('SET_LOADING_STATUS', false);
         context.commit('SET_HEADLINES', localData.articles);
       }, 2000);
+    },
+    removeErrors(context) {
+      context.commit('SET_ERROR_MESSAGE', null);
+    },
+    fetchSearchResults(context, searchQuery) {
+      context.commit('SET_LOADING_STATUS', true);
+      let queryString = '';
+      if (searchQuery.length === 0) {
+        queryString = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e';
+      } else {
+        queryString = `https://newsapi.org/v2/top-headlines?q=${searchQuery}&apiKey=099148be22804e849a0c6fe022b7cf5e`;
+      }
+      axios
+        .get(queryString)
+        .then((response) => {
+          context.commit('SET_LOADING_STATUS', false);
+          context.commit('SET_HEADLINES', response.data.articles);
+        })
+        .catch((error) => {
+          context.commit('SET_ERROR_MESSAGE', error.response.data.message || error.message);
+        });
     },
   },
 });

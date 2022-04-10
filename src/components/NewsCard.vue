@@ -4,7 +4,7 @@
       <div class="d-flex flex-column justify-space-between fill-height">
         <div>
           <v-card-title class="text-subtitle-1 normal">
-            {{ title }}
+            {{ this.article.title }}
           </v-card-title>
         </div>
         <v-card-subtitle class="d-flex justify-space-between align-center">
@@ -57,7 +57,7 @@ export default {
     return {
       dialog: false,
       articleId: this.id,
-      title: this.article.title.substr(0, this.article.title.indexOf('-') - 1),
+      title: '',
       max: 255,
     };
   },
