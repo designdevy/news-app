@@ -40,6 +40,9 @@ export default {
     };
   },
   computed: mapGetters(['getHistory']),
+  created() {
+    this.$store.dispatch('fetchHeadlinesFromLocal');
+  },
 };
 </script>
 

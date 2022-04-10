@@ -9,11 +9,17 @@ export default new Vuex.Store({
   state: {
     articles: [],
     history: [],
-    loadingStatus: 'notLoading',
+    loadingStatus: false,
   },
   getters: {
     getHistory(state) {
       return state.history;
+    },
+    getArticles(state) {
+      return state.articles;
+    },
+    getLoadingStatus(state) {
+      return state.loadingStatus;
     },
   },
   mutations: {
@@ -41,13 +47,13 @@ export default new Vuex.Store({
   },
   actions: {
     fetchHeadlinesFromApi(context) {
-      context.commit('SET_LOADING_STATUS', 'loading');
+      context.commit('SET_LOADING_STATUS', true);
       axios
         .get(
           'https://newsapi.org/v2/top-headlines?country=us&apiKey=841d612e1f4c415780982ddf90eecdfc',
         )
         .then((response) => {
-          context.commit('SET_LOADING_STATUS', 'notLoading');
+          context.commit('SET_LOADING_STATUS', false);
           context.commit('SET_HEADLINES', response.data.articles);
         })
         .catch((error) => {
@@ -55,9 +61,9 @@ export default new Vuex.Store({
         });
     },
     fetchHeadlinesFromLocal(context) {
-      context.commit('SET_LOADING_STATUS', 'loading');
+      context.commit('SET_LOADING_STATUS', true);
       setTimeout(() => {
-        context.commit('SET_LOADING_STATUS', 'notLoading');
+        context.commit('SET_LOADING_STATUS', false);
         context.commit('SET_HEADLINES', localData.articles);
       }, 2000);
     },
