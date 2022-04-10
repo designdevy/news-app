@@ -18,9 +18,10 @@
               </template>
               <v-card>
                 <v-card-title>
-                  <span class="text-h5">Edit</span>
+                  <span class="text-h5">Edit Headline</span>
                 </v-card-title>
                 <v-card-text>
+                  <small>*The Headline should be less than 255 Characters</small>
                   <v-container>
                     <v-row>
                       <v-col cols="12" class="pa-0">
@@ -28,14 +29,16 @@
                           v-model="title"
                           :counter="max"
                           :rules="rules"
-                          label="Headline*"
+                          label="Title"
                           :maxlength="max + 1"
                           required
                         ></v-text-field>
                       </v-col>
                     </v-row>
                   </v-container>
-                  <small>*The Headline should be less than 255 Characters</small>
+                  <div class="d-flex flex-column">
+                    <v-btn color="blue darken-1" text @click.prevent="updateTitle"> Save </v-btn>
+                  </div>
                 </v-card-text>
               </v-card>
             </v-dialog>
@@ -84,10 +87,18 @@ export default {
     },
     addToHistory() {
       this.$store.commit('ADD_TO_HISTORY', {
+        id: this.id,
+        title: this.article.title,
+      });
+      router.push({ name: 'article', params: { articleId: this.articleId } });
+    },
+    updateTitle() {
+      this.$store.commit('UPDATE_TITLE', {
         id: this.articleId,
         title: this.title,
       });
-      router.push({ name: 'article', params: { articleId: this.articleId } });
+      this.title = '';
+      this.dialog = false;
     },
   },
 };

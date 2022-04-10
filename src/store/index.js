@@ -61,8 +61,8 @@ export default new Vuex.Store({
     SET_SOURCES(state, sources) {
       state.sources = sources;
     },
-    SET_TITLE(state, id, title) {
-      state.articles[id].title = title;
+    UPDATE_TITLE(state, article) {
+      state.articles[article.id - 1].title = article.title;
     },
     RESET_FILTER(state) {
       state.isFilterApplied = false;
