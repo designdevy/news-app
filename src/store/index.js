@@ -12,12 +12,16 @@ export default new Vuex.Store({
     sources: [],
     loadingStatus: false,
     appliedFilter: '',
+    isFilterApplied: false,
   },
   getters: {
     getHistory(state) {
       return state.history;
     },
     getArticles(state) {
+      if (state.isFilterApplied) {
+        return state.articles.filter((article) => article.source.name === state.appliedFilter);
+      }
       return state.articles;
     },
     getSources(state) {
@@ -52,11 +56,12 @@ export default new Vuex.Store({
     SET_TITLE(state, id, title) {
       state.articles[id].title = title;
     },
-    RESET_FILTER() {
-
+    RESET_FILTER(state) {
+      state.isFilterApplied = false;
     },
-    APPLY_FILTER() {
-
+    APPLY_FILTER(state, source) {
+      state.isFilterApplied = true;
+      state.appliedFilter = source;
     },
   },
   actions: {

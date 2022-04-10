@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-5 fill-height" fluid>
+  <v-container class="pa-5" fluid>
     <v-row class="align-center" no-gutters style="height: 50px">
       <h1 class="text-h4">Headlines</h1>
       <v-spacer></v-spacer>
