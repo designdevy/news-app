@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-app-bar app color="deep-purple accent-4" dark>
-      <!-- Add News App Title -->
       <router-link class="text-decoration-none white--text" to="/">ThisWeekNews!</router-link>
       <v-spacer />
       <v-app-bar-nav-icon @click="drawer = true" class="mx-1"></v-app-bar-nav-icon>
