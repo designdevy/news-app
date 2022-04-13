@@ -27,3 +27,5 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+#### Hosted on Vercel but unfortunately the free API plan doesn't allow you to use it except on localhost. To view the app, please clone the repo and run on your machine.
